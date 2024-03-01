@@ -3,6 +3,7 @@ import bgImg from '../images/background.png'
 import mon1 from '../images/monkey1.png'
 import txt from '../images/txt.png'
 import start from '../images/start.png'
+import wel from '../images/wel.png'
 
 const Home = () => {
 
@@ -33,7 +34,7 @@ const Home = () => {
                         alt='txt'
                         className='relative'
                     />
-                    <p className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold'>Welcome kiddo!</p>
+                    <img src={wel} alt='wel' className='absolute w-[250px] transform translate-x-[50px] -translate-y-[120px]'/>
                 </div>
             </div>           
         </div>

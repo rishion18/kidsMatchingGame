@@ -5,6 +5,7 @@ import back from '../images/back.png'
 import yes from '../images/yes.png'
 import progressBarDis from '../images/progressBarDis.png'
 import bananaDis from '../images/bananaDis.png'
+import instxt1 from '../images/instxt1.png'
 import { useNavigate } from 'react-router-dom'
 
 const IntroScreen = () => {
@@ -36,7 +37,8 @@ const navigate = useNavigate();
                         alt='txt'
                         className='relative'  // Adjust the translate-y value as needed
                     />
-                    <p className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold'>Can you help me get some!</p>
+                    <img src={instxt1} alt='wel' className='absolute w-[250px] transform translate-x-[50px] -translate-y-[140px]'/>
+
                </div>  
             </div> 
             <img 

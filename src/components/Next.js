@@ -3,6 +3,7 @@ import mon1 from '../images/monkey1.png'
 import txt from '../images/txt.png'
 import next from '../images/next.png'
 import back from '../images/back.png'
+import instxt from '../images/instxt.png'
 import { useNavigate } from 'react-router-dom'
 
 const Next = () => {
@@ -34,7 +35,8 @@ const navigate = useNavigate();
                         alt='txt'
                         className='relative'  // Adjust the translate-y value as needed
                     />
-                    <p className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold'>Hi I am Mizo, and i love bananas</p>
+                    <img src={instxt} alt='wel' className='absolute w-[250px] transform translate-x-[50px] -translate-y-[140px]'/>
+
                </div>  
             </div> 
             <img 

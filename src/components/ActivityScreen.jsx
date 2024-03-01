@@ -16,66 +16,72 @@ import cardCherry from '../images/cardCherry.png'
 import cardBanana from '../images/cardBanana.png'
 import cardPear from '../images/cardPear.png'
 import cardOrange from '../images/cardOrange.png'
-
-
-
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import FlipCard from './FlipCard'
 import MatchCard from './MatchCard'
+import AlertMatch from './AlertMatch'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import Completed from './Completed'
 
 const ActivityScreen = () => {
 
 const navigate = useNavigate();
 
-// const[isFlipped,setFlip] = useState(false)
+const{matchAlert , completed} = useSelector(state => state.Events);
 
-// const handleFlip = () => {
-//     setFlip(!isFlipped)
-// }
-const[parent , setParent] = useState(null);
+const[msg , setMsg] = useState(true)
 
-const [matched, setMatched] = useState(new Set());
+useEffect(() => {
+    setTimeout(() => {
+        setMsg(false)
+    } , 6000)
+} , [])
 
     return(
         <div className="w-screen h-screen flex justify-center relative">
             <img 
                 src={bgImg}
                 alt="bg-img"
-                className='w-auto h-full'
+                className={`w-auto h-full ${matchAlert || completed ? 'opacity-20':''}
+`}
             />
             <img 
                 src={back}
                 onClick={() => {navigate('/instruction')}} 
                 alt='next' 
-                className='absolute w-[100px] h-auto left-1/2 transform -translate-x-[450px] translate-y-8 ' // Adjust the translate-y value as needed
+                className={`absolute w-[100px] h-auto left-1/2 transform -translate-x-[450px] translate-y-8 ${completed?'opacity-20':''}`} 
             />
             <img 
                 src={progressBarDis}
                 alt='progressBarDis' 
-                className='absolute w-[500px] h-auto left-1/2 transform -translate-x-[280px] translate-y-6 ' // Adjust the translate-y value as needed
+                className={`absolute w-[500px] h-auto left-1/2 transform -translate-x-[280px] translate-y-6 ${matchAlert||completed ? 'opacity-20':''}
+ `} 
             />
             <img 
                 src={bananaDis}
                 alt='bananaDis' 
-                className='absolute w-[100px] h-auto transform translate-x-[200px] translate-y-[5px] ' // Adjust the translate-y value as needed
+                className={`absolute w-[100px] h-auto transform translate-x-[200px] translate-y-[5px] ${matchAlert||completed ? 'opacity-20':''}`} 
             />
-            <div className='flex gap-5 absolute transform translate-y-[180px]'>
+            <Completed/>
+            <p className={`font-bold text-appBlue text-[32px] absolute transform translate-x-0 translate-y-[120px] ${matchAlert||completed ? 'opacity-20':''} ${!msg ? 'hidden':''}`}>Memorize the images ...</p>
+            <AlertMatch img1={cardPink} img2={cardBlue}/>
+            <div className={`flex gap-5 absolute transform translate-y-[180px] ${matchAlert||completed ? 'opacity-20':''}`}>
                 <div className='grid grid-cols-3 h-[350px] gap-2'>
-                   <FlipCard val={'pear'} front={cardPink} back={cardPear} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched} />
-                   <FlipCard val={'banana'} front={cardPink} back={cardBanana} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                   <FlipCard val={'apple'} front={cardPink} back={cardApple} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                   <FlipCard val={'orange'} front={cardPink} back={cardOrange} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                   <FlipCard val={'grape'} front={cardPink} back={cardGrape} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                   <FlipCard val={'cherry'} front={cardPink} back={cardCherry} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
+                   <FlipCard val={'Pear'} front={cardPink} back={cardPear}  />
+                   <FlipCard val={'Banana'} front={cardPink} back={cardBanana} />
+                   <FlipCard val={'Apple'} front={cardPink} back={cardApple} />
+                   <FlipCard val={'Orange'} front={cardPink} back={cardOrange} />
+                   <FlipCard val={'Grape'} front={cardPink} back={cardGrape} />
+                   <FlipCard val={'Cherry'} front={cardPink} back={cardCherry} />
                 </div>
                <div className='grid grid-cols-3 h-[350px] gap-2'>
-                  <MatchCard val={'apple'} front={cardBlue} back={blueApple} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                  <MatchCard val={'orange'} front={cardBlue} back={blueOrange} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                  <MatchCard val={'grape'} front={cardBlue} back={blueGrape} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                  <MatchCard val={'cherry'} front={cardBlue} back={blueCherry} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                  <MatchCard val={'pear'} front={cardBlue} back={bluePear} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
-                  <MatchCard val={'banana'} front={cardBlue} back={blueBanana} parent={parent} setParent={setParent} matched={matched} setMatched={setMatched}/>
+                  <MatchCard val={'Apple'} front={cardBlue} back={blueApple} />
+                  <MatchCard val={'Orange'} front={cardBlue} back={blueOrange} />
+                  <MatchCard val={'Grape'} front={cardBlue} back={blueGrape} />
+                  <MatchCard val={'Cherry'} front={cardBlue} back={blueCherry} />
+                  <MatchCard val={'Pear'} front={cardBlue} back={bluePear} />
+                  <MatchCard val={'Banana'} front={cardBlue} back={blueBanana} />
                </div>
             </div>
          </div>
@@ -84,15 +90,3 @@ const [matched, setMatched] = useState(new Set());
 
 export default ActivityScreen;
 
-{/* <div>
-    <div className='group [perspective:1000px]'>
-        <div className={`relative [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY()]':''}`} onClick={handleFlip}>
-            <div className='absolute inset-0'>
-                <img src={cardPink} alt='cardPink' className='w-[130px] ' />
-            </div>
-            <div className='absolute inset-0'>
-                <img src={cardApple} alt='cardPink' className='w-[130px] ' />
-            </div>
-        </div>
-    </div>
-</div> */}
