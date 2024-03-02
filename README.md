@@ -1,3 +1,5 @@
+Only for dekstop resolution 
+
 app deployed on vercel - https://kids-matching-game.vercel.app/
 How to play - 
 all the cards are shown to player for six seconds to memorize the positions.
